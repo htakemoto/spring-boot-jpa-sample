@@ -1,0 +1,19 @@
+######## Application Access Point ########
+
+server:
+    address: localhost
+    port: 8080
+    #contextPath: /
+
+management:
+    port: 8081
+    #contextPath: /manage
+
+
+######## Database Access Point ########
+
+#spring.datasource:
+#    url: jdbc:mysql://localhost:8889/java-jpa-test
+#    username: root
+#    password: root
+#    driverClassName: com.mysql.jdbc.Driver
