@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
-	
-	protected final Logger log = LoggerFactory.getLogger(getClass());
-	
-	@RequestMapping("/")
-	public String home() {
+    
+    protected final Logger log = LoggerFactory.getLogger(getClass());
+    
+    @RequestMapping("/")
+    public String home() {
         return "Welcome to home!";
     }
 }

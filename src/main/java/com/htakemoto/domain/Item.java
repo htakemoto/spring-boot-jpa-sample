@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name="item")
 @Data
 public class Item {
-	
+    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="item_id")

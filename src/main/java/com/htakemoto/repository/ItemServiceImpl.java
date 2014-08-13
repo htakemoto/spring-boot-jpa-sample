@@ -22,7 +22,7 @@ import com.htakemoto.service.exception.NoUserExistsException;
 @Service
 @Validated
 public class ItemServiceImpl implements ItemService {
-	
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ItemServiceImpl.class);
     
     private final ItemRepository itemRepository;
@@ -43,7 +43,7 @@ public class ItemServiceImpl implements ItemService {
             throw new NoUserExistsException (
                     String.format("No user exists with id=%d", userId));
         }
-    	List<Item> itemsWithUser = new ArrayList<Item>();
+        List<Item> itemsWithUser = new ArrayList<Item>();
         for (Item item : items) {
             if (itemRepository.exists(item.getItemId())) {
                 throw new ItemAlreadyExistsException (
@@ -70,7 +70,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public Item update(@NotNull @Valid final Item item, @NotNull @Valid final long itemId, @NotNull @Valid final long userId) {
         LOGGER.debug("Updating {} on ItemId={} UserId={}", item, itemId, userId);
-		User user =  userRepository.findOne(userId);
+        User user =  userRepository.findOne(userId);
         if (user == null) {
             throw new NoUserExistsException (
                     String.format("No user exists with id=%d", userId));
@@ -80,8 +80,8 @@ public class ItemServiceImpl implements ItemService {
                     String.format("No item exists with id=%d", itemId));
         }
         item.setItemId(itemId);
-		item.setUser(user);
-		return itemRepository.save(item);
+        item.setUser(user);
+        return itemRepository.save(item);
     }
     
     @Override

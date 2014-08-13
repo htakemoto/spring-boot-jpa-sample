@@ -18,21 +18,21 @@ import com.htakemoto.service.exception.UserAlreadyExistsException;
 @ControllerAdvice
 public class GlobalExceptionController {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionController.class);
-	
+    protected static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionController.class);
+    
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     public String handleUserAlreadyExistsException(HttpServletRequest request, UserAlreadyExistsException e) {
-    	LOGGER.info("UserAlreadyExistsException occured: URL="+request.getRequestURL());
-    	return e.getMessage();
+        LOGGER.info("UserAlreadyExistsException occured: URL="+request.getRequestURL());
+        return e.getMessage();
     }
     
     @ExceptionHandler(NoUserExistsException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public String handleNonExistingUserException(HttpServletRequest request, NoUserExistsException e) {
-    	LOGGER.info("NoUserExistsException occured: URL="+request.getRequestURL());
+        LOGGER.info("NoUserExistsException occured: URL="+request.getRequestURL());
         return e.getMessage();
     }
     
@@ -40,7 +40,7 @@ public class GlobalExceptionController {
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     public String handleItemAlreadyExistsException(HttpServletRequest request, ItemAlreadyExistsException e) {
-    	LOGGER.info("ItemAlreadyExistsException occured: URL="+request.getRequestURL());
+        LOGGER.info("ItemAlreadyExistsException occured: URL="+request.getRequestURL());
         return e.getMessage();
     }
     
@@ -48,7 +48,7 @@ public class GlobalExceptionController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public String handleNonExistingItemException(HttpServletRequest request, NoItemExistsException e) {
-    	LOGGER.info("NoItemExistsException occured: URL="+request.getRequestURL());
+        LOGGER.info("NoItemExistsException occured: URL="+request.getRequestURL());
         return e.getMessage();
     }
 }
