@@ -48,9 +48,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User findOne(Long id) {
-        LOGGER.debug("Retrieving a user by user id");
-        return userRepository.findOne(id);
+    public User findOne(long id) {
+        LOGGER.debug("Retrieving a user by user id={}", id);
+        User user = userRepository.findOne(id);
+        if (user == null) {
+            throw new NoUserExistsException(
+                    String.format("No user exists with id=%d", id));
+        }
+        return user;
     }
 
     @Override
@@ -67,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User delete(@NotNull @Valid final Long userId) {
+    public User delete(@NotNull @Valid final long userId) {
         LOGGER.debug("Deleting {}", userId);
         User existing = userRepository.findOne(userId);
         if (existing == null) {

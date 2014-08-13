@@ -105,13 +105,13 @@ public class UserController {
 	// Content-Type: application/json
 	// Payload: [{ "itemName": "Java Tutorial Book", "quantity": 3 },{ "itemName": "Concert Tickets", "quantity": 2 }]
 	@RequestMapping(value="/{userId}/items", method=RequestMethod.POST)
-    public List<Item> createUserItems(@PathVariable Long userId, @RequestBody List<Item> items) {
+    public List<Item> createUserItems(@PathVariable long userId, @RequestBody List<Item> items) {
 		return (List<Item>) itemService.save(items, userId);
     }
 	
 	// GET: http://localhost:8080/users/1/items
 	@RequestMapping(value="/{userId}/items", method=RequestMethod.GET)
-    public List<Item> getUserItems(@PathVariable Long userId) {
+    public List<Item> getUserItems(@PathVariable long userId) {
         return itemService.findByUserId(userId);
     }
 	
@@ -128,34 +128,5 @@ public class UserController {
     public String deleteUserItem(@PathVariable long userId, @PathVariable long itemId) {
 		itemService.delete(itemId, userId);
 		return itemId + " is Deleted";
-    }
-	
-	
-	/*
-	 *  Exception Handlers
-	 */
-	
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleUserAlreadyExistsException(UserAlreadyExistsException e) {
-        return e.getMessage();
-    }
-    
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_MODIFIED)
-    public String handleNonExistingUserException(NoUserExistsException e) {
-        return e.getMessage();
-    }
-    
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleItemAlreadyExistsException(ItemAlreadyExistsException e) {
-        return e.getMessage();
-    }
-    
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_MODIFIED)
-    public String handleNonExistingItemException(NoItemExistsException e) {
-        return e.getMessage();
     }
 }

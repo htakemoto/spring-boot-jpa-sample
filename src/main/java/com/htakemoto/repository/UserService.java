@@ -8,7 +8,7 @@ public interface UserService {
 	
     User save(User user);
     List<User> findAll();
-    User findOne(Long userId);
+    User findOne(long userId);
     User update(User user);
-    User delete(Long user);
+    User delete(long user);
 }
