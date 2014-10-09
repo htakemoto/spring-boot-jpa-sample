@@ -9,26 +9,17 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.htakemoto.domain.Item;
 import com.htakemoto.domain.User;
-import com.htakemoto.repository.ItemRepository;
 import com.htakemoto.repository.ItemService;
-import com.htakemoto.repository.UserRepository;
 import com.htakemoto.repository.UserService;
 import com.htakemoto.rest.domain.UserResponse;
-import com.htakemoto.service.exception.ItemAlreadyExistsException;
-import com.htakemoto.service.exception.NoItemExistsException;
-import com.htakemoto.service.exception.NoUserExistsException;
-import com.htakemoto.service.exception.UserAlreadyExistsException;
 
 @RestController
 @RequestMapping("/users")
