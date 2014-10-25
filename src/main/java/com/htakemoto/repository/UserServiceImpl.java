@@ -2,12 +2,12 @@ package com.htakemoto.repository;
 
 import java.util.List;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -21,12 +21,9 @@ import com.htakemoto.service.exception.UserAlreadyExistsException;
 public class UserServiceImpl implements UserService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-    private final UserRepository userRepository;
-
-    @Inject
-    public UserServiceImpl(final UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     @Transactional

@@ -3,8 +3,6 @@ package com.htakemoto.rest.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,17 +24,14 @@ import com.htakemoto.rest.domain.UserResponse;
 public class UserController {
     
     protected static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    private final UserService userService;
-    private final ItemService itemService;
+    
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ItemService itemService;
     
     @Autowired
     protected ModelMapper pojoMapper;
-    
-    @Inject
-    public UserController(final UserService userService, final ItemService itemService) {
-        this.userService = userService;
-        this.itemService = itemService;
-    }
     
     /*
      *  User Controller
