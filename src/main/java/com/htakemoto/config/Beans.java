@@ -7,7 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class Beans {
-
+	
+    @Bean
+    public AccessLog accessLog() {
+        return new AccessLog();
+    }
+	
     @Bean
     public ModelMapper pojoMapper() {
         ModelMapper modelMapper = new ModelMapper();
