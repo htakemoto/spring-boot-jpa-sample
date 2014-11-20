@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -53,6 +54,12 @@ public class UserServiceImpl implements UserService {
                     String.format("No user exists with id=%d", id));
         }
         return user;
+    }
+    
+    @Override
+    public List<User> findByFirstnameStartingWith(String firstname) {
+        LOGGER.debug("Retrieving the list of all users with firstname start with {}", firstname);
+        return (List<User>) userRepository.findByFirstnameStartingWithIgnoreCase(firstname.toUpperCase(), new Sort(Sort.Direction.ASC,"firstname"));
     }
 
     @Override

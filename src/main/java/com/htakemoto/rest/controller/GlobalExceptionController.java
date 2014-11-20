@@ -19,13 +19,21 @@ import com.htakemoto.service.exception.UserAlreadyExistsException;
 public class GlobalExceptionController {
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionController.class);
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public String handleIllegalArgumentException(HttpServletRequest request, IllegalArgumentException e) {
+        LOGGER.info("IllegalArgumentException occured: URL="+request.getRequestURL());
+        return e.getLocalizedMessage();
+    }
     
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     public String handleUserAlreadyExistsException(HttpServletRequest request, UserAlreadyExistsException e) {
         LOGGER.info("UserAlreadyExistsException occured: URL="+request.getRequestURL());
-        return e.getMessage();
+        return e.getLocalizedMessage();
     }
     
     @ExceptionHandler(NoUserExistsException.class)
@@ -33,7 +41,7 @@ public class GlobalExceptionController {
     @ResponseBody
     public String handleNonExistingUserException(HttpServletRequest request, NoUserExistsException e) {
         LOGGER.info("NoUserExistsException occured: URL="+request.getRequestURL());
-        return e.getMessage();
+        return e.getLocalizedMessage();
     }
     
     @ExceptionHandler(ItemAlreadyExistsException.class)
@@ -41,7 +49,7 @@ public class GlobalExceptionController {
     @ResponseBody
     public String handleItemAlreadyExistsException(HttpServletRequest request, ItemAlreadyExistsException e) {
         LOGGER.info("ItemAlreadyExistsException occured: URL="+request.getRequestURL());
-        return e.getMessage();
+        return e.getLocalizedMessage();
     }
     
     @ExceptionHandler(NoItemExistsException.class)
@@ -49,6 +57,6 @@ public class GlobalExceptionController {
     @ResponseBody
     public String handleNonExistingItemException(HttpServletRequest request, NoItemExistsException e) {
         LOGGER.info("NoItemExistsException occured: URL="+request.getRequestURL());
-        return e.getMessage();
+        return e.getLocalizedMessage();
     }
 }
