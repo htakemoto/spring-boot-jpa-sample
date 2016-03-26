@@ -10,6 +10,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.DS_Store
 
 # External tool builders
 .externalToolBuilders/
@@ -29,3 +30,6 @@ local.properties
 # TeXlipse plugin
 .texlipse
 /target/
+
+# IntelliJ-specific
+.idea
